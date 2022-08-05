@@ -6,3 +6,12 @@ class Room:
         self.room_price = room_price
         self.guests_in_room = []
         self.song_list = []
+
+    # def check_in_guests(self, customer, karaoke_room):
+    #     if karaoke_room == self.room_name:
+    #         self.guests_in_room.append(customer)
+    #     return self.guests_in_room
+
+    def check_in_guests(self, customer):
+        self.guests_in_room.append(customer)
+        return self.guests_in_room
