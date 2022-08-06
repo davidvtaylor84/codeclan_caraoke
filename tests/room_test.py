@@ -7,11 +7,13 @@ from src.song import Song
 class TestRoom(unittest.TestCase):
     
     def setUp(self):
-        self.room1 = Room("Red Room", 12, 50.00 )
+        self.room1 = Room("Red Room", 4, 50.00 )
         self.room2 = Room("Green Room", 6, 30.00)
         self.guest1 = Guest("Harry the Human Sub-Woofer", 90)
         self.guest2 = Guest("Sylvia Skyshouter", 150)
         self.guest3 = Guest("Jim Wildheart", 90)
+        self.guest4 = Guest("Wanda Wanna Banana", 40)
+        self.guest5 = Guest("Kaneda", 70)
         self.song1 = Song("Wuthering Heights by Kate Bush")
         self.song2 = Song("4'33 by John Cage")
 
@@ -50,3 +52,23 @@ class TestRoom(unittest.TestCase):
         add_song1 = self.room2.add_song_to_room(self.song1.song_name)
         add_song2 = self.room2.add_song_to_room(self.song2.song_name)
         self.assertEqual(["Wuthering Heights by Kate Bush", "4'33 by John Cage"], add_song1, add_song2)
+
+    def test_too_many_people_in_room(self):
+        self.room1.check_in_guests(self.guest1.guest_name)
+        self.room1.check_in_guests(self.guest2.guest_name)
+        self.room1.check_in_guests(self.guest3.guest_name)
+        self.room1.check_in_guests(self.guest4.guest_name)
+        self.room1.check_in_guests(self.guest5.guest_name)
+        capacity = self.room1.room_capacity_check(self.room1)
+        self.assertEqual("ROOM CAPACITY EXCEEDED", capacity)
+
+    def test_room_capacity_is_fine(self):
+        self.room2.check_in_guests(self.guest1.guest_name)
+        self.room2.check_in_guests(self.guest2.guest_name)
+        self.room2.check_in_guests(self.guest3.guest_name)
+        self.room2.check_in_guests(self.guest4.guest_name)            
+        self.room2.check_in_guests(self.guest5.guest_name)
+        capacity = self.room2.room_capacity_check(self.room2)
+        self.assertEqual("Acceptable number of people in room. Sing away!", capacity)
+
+

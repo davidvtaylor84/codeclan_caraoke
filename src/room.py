@@ -7,11 +7,6 @@ class Room:
         self.guests_in_room = []
         self.song_list = []
 
-    # def check_in_guests(self, customer, karaoke_room):
-    #     if karaoke_room == self.room_name:
-    #         self.guests_in_room.append(customer)
-    #     return self.guests_in_room
-
     def check_in_guests(self, customer):
         self.guests_in_room.append(customer)
         return self.guests_in_room
@@ -23,3 +18,12 @@ class Room:
     def add_song_to_room(self, song):
         self.song_list.append(song)
         return self.song_list
+
+    def room_capacity_check(self, room):
+        if len(self.guests_in_room) > self.room_capacity:
+            return "ROOM CAPACITY EXCEEDED"
+        else:
+            return "Acceptable number of people in room. Sing away!"
+
+           
+
