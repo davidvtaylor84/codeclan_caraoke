@@ -7,9 +7,12 @@ from src.song import Song
 class TestGuest(unittest.TestCase):
 
     def setUp(self):
-        self.guest1 = Guest("The Great Waldo", 40)
-        self.guest2 = Guest("Sandra the Voice of Reason", 60)
+        self.guest1 = Guest("The Great Waldo", 40, "I Miss You by Blink 182")
+        self.guest2 = Guest("Sandra the Voice of Reason", 60, "Teenage Riot by Sonic Youth")
         self.room1 = Room("Red Room", 4, 50.00 )
+        self.song1 = Song("I Miss You by Blink 182")
+        self.song2 = Song("Song 2 by Blur")
+        self.song3 = Song("Red Right Hand by Nick Cave")
 
     # set-up tests
     def test_customer_has_name(self):
@@ -27,3 +30,23 @@ class TestGuest(unittest.TestCase):
     def test_cannot_pay_for_room(self):
         no_money = self.guest1.pay_for_room(self.room1, self.guest1)
         self.assertEqual("You don't have enough money", no_money)
+
+    def test_favourite_song(self):
+        self.room1.add_song_to_room(self.song1.song_name)
+        fav_song = self.guest1.my_favourite_song(self.room1, self.guest1)
+        self.assertEqual("Yes! This is my jam!", fav_song)
+
+    def test_favourite_song_in_larger_list(self):
+        self.room1.add_song_to_room(self.song1.song_name)
+        self.room1.add_song_to_room(self.song2.song_name)
+        self.room1.add_song_to_room(self.song3.song_name)
+        fav_song = self.guest1.my_favourite_song(self.room1, self.guest1)
+        self.assertEqual("Yes! This is my jam!", fav_song)
+
+    def test_song_not_in_list(self):
+        self.room1.add_song_to_room(self.song1.song_name)
+        self.room1.add_song_to_room(self.song2.song_name)
+        self.room1.add_song_to_room(self.song3.song_name)
+        fav_song = self.guest2.my_favourite_song(self.room1, self.guest2)
+        self.assertEqual("Meh..", fav_song)
+

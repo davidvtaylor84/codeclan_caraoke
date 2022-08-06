@@ -9,11 +9,11 @@ class TestRoom(unittest.TestCase):
     def setUp(self):
         self.room1 = Room("Red Room", 4, 50.00 )
         self.room2 = Room("Green Room", 6, 30.00)
-        self.guest1 = Guest("Harry the Human Sub-Woofer", 90)
-        self.guest2 = Guest("Sylvia Skyshouter", 150)
-        self.guest3 = Guest("Jim Wildheart", 90)
-        self.guest4 = Guest("Wanda Wanna Banana", 40)
-        self.guest5 = Guest("Kaneda", 70)
+        self.guest1 = Guest("Harry the Human Sub-Woofer", 90, "I Miss You by Blink 182")
+        self.guest2 = Guest("Sylvia Skyshouter", 150, "Teenage Riot by Sonic Youth")
+        self.guest3 = Guest("Jim Wildheart", 90, "Frack the Police by NWA")
+        self.guest4 = Guest("Wanda Wanna Banana", 40, "Chimp Diaries by HelloWorld")
+        self.guest5 = Guest("Kaneda", 70, "Venus in Furs by the Velvet Underground")
         self.song1 = Song("Wuthering Heights by Kate Bush")
         self.song2 = Song("4'33 by John Cage")
 
