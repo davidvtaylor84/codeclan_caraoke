@@ -1,3 +1,4 @@
+from __future__ import barry_as_FLUFL
 import unittest
 
 from src.guest import Guest
@@ -17,9 +18,11 @@ class TestRoom(unittest.TestCase):
         self.guest5 = Guest("Kaneda", 70, "Venus in Furs by the Velvet Underground")
         self.song1 = Song("Wuthering Heights by Kate Bush")
         self.song2 = Song("4'33 by John Cage")
+        self.song3 = Song("Big Spender by Shirley Bassey")
         self.drink1 = Drinks("Vodka Coke", 4.5)
         self.drink2 = Drinks("Leith Juice pint", 4.90)
         self.drink3 = Drinks("Large Glass Pinot Grigio", 5)
+        self.drink4 = Drinks("Champagne", 45.00)
 
 
     # set-up tests
@@ -85,6 +88,17 @@ class TestRoom(unittest.TestCase):
         self.room2.add_to_tab(self.room2, self.drink2.drink_price)
         self.room2.add_to_tab(self.room2, self.drink3.drink_price)
         self.assertEqual(14.40, self.room2.drinks_tab)
+
+    def test_big_spender(self):
+        self.room2.add_to_tab(self.room2, self.drink4.drink_price)
+        self.room2.add_to_tab(self.room2, self.drink4.drink_price)
+        self.room2.add_to_tab(self.room2, self.drink4.drink_price)
+        self.room2.add_to_tab(self.room2, self.drink3.drink_price)
+        self.room2.add_to_tab(self.room2, self.drink3.drink_price)
+        self.room2.add_to_tab(self.room2, self.drink3.drink_price)
+        self.room2.add_to_tab(self.room2, self.drink2.drink_price)
+        self.room2.big_spender()
+        self.assertEqual(["Big Spender by Shirley Bassey"], self.room2.song_list)
 
 
 

@@ -30,3 +30,12 @@ class Room:
     def add_to_tab(self, room, drink_price):
         self.drinks_tab += drink_price
         return self.drinks_tab
+
+    # EXTRA FUNCTION:
+    # ONCE THE BAR TAB REACHES £150, THE SONG, 
+    #"BIG SPENDER" BY SHIRLEY BASSEY, IS LOADED ONTO THEIR SONG LIST.
+
+    def big_spender(self):
+        if self.drinks_tab >= 150.00:
+            self.add_song_to_room("Big Spender by Shirley Bassey")
+        
