@@ -15,3 +15,7 @@ class Room:
     def check_in_guests(self, customer):
         self.guests_in_room.append(customer)
         return self.guests_in_room
+
+    def check_out_guests(self, customer):
+        self.guests_in_room.remove(customer)
+        return self.guests_in_room

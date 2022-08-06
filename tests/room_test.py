@@ -11,6 +11,7 @@ class TestRoom(unittest.TestCase):
         self.room2 = Room("Green Room", 6, 30.00)
         self.guest1 = Guest("Harry the Human Sub-Woofer", 90)
         self.guest2 = Guest("Sylvia Skyshouter", 150)
+        self.guest3 = Guest("Jim Wildheart", 90)
         self.song1 = Song("Wuthering Heights by Kate Bush")
         self.song2 = Song("4'33 by John Cage")
 
@@ -29,4 +30,14 @@ class TestRoom(unittest.TestCase):
         add_guest = self.room1.check_in_guests(self.guest1.guest_name)
         self.assertEqual(["Harry the Human Sub-Woofer"], add_guest)
 
-        
+    def test_check_in_multiple_guests(self):
+        add_guest1 = self.room1.check_in_guests(self.guest1.guest_name)
+        add_guest2 = self.room1.check_in_guests(self.guest3.guest_name)
+        self.assertEqual(["Harry the Human Sub-Woofer", "Jim Wildheart"], add_guest1, add_guest2)
+
+    def test_check_out_guests(self):
+        self.room2.check_in_guests(self.guest1.guest_name)
+        self.room2.check_in_guests(self.guest2.guest_name)
+        self.room2.check_in_guests(self.guest3.guest_name)
+        removed_guests = self.room2.check_out_guests(self.guest3.guest_name)
+        self.assertEqual(["Harry the Human Sub-Woofer", "Sylvia Skyshouter"], removed_guests)
