@@ -19,3 +19,7 @@ class Room:
     def check_out_guests(self, customer):
         self.guests_in_room.remove(customer)
         return self.guests_in_room
+
+    def add_song_to_room(self, song):
+        self.song_list.append(song)
+        return self.song_list

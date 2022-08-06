@@ -41,3 +41,12 @@ class TestRoom(unittest.TestCase):
         self.room2.check_in_guests(self.guest3.guest_name)
         removed_guests = self.room2.check_out_guests(self.guest3.guest_name)
         self.assertEqual(["Harry the Human Sub-Woofer", "Sylvia Skyshouter"], removed_guests)
+
+    def test_add_song_to_room(self):
+        add_song = self.room2.add_song_to_room(self.song1.song_name)
+        self.assertEqual(["Wuthering Heights by Kate Bush"], add_song)
+
+    def tests_add_multiple_songs(self):
+        add_song1 = self.room2.add_song_to_room(self.song1.song_name)
+        add_song2 = self.room2.add_song_to_room(self.song2.song_name)
+        self.assertEqual(["Wuthering Heights by Kate Bush", "4'33 by John Cage"], add_song1, add_song2)
