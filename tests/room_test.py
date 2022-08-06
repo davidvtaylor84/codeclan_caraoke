@@ -3,6 +3,7 @@ import unittest
 from src.guest import Guest
 from src.room import Room
 from src.song import Song
+from src.drinks import Drinks
 
 class TestRoom(unittest.TestCase):
     
@@ -16,6 +17,10 @@ class TestRoom(unittest.TestCase):
         self.guest5 = Guest("Kaneda", 70, "Venus in Furs by the Velvet Underground")
         self.song1 = Song("Wuthering Heights by Kate Bush")
         self.song2 = Song("4'33 by John Cage")
+        self.drink1 = Drinks("Vodka Coke", 4.5)
+        self.drink2 = Drinks("Leith Juice pint", 4.90)
+        self.drink3 = Drinks("Large Glass Pinot Grigio", 5)
+
 
     # set-up tests
     def test_room_has_name(self):
@@ -70,5 +75,17 @@ class TestRoom(unittest.TestCase):
         self.room2.check_in_guests(self.guest5.guest_name)
         capacity = self.room2.room_capacity_check(self.room2)
         self.assertEqual("Acceptable number of people in room. Sing away!", capacity)
+
+    def test_add_one_drink_price_to_tab(self):
+        self.room2.add_to_tab(self.room2, self.drink1.drink_price)
+        self.assertEqual(4.50, self.room2.drinks_tab)
+
+    def test_add_multiple_drinks_to_tab(self):
+        self.room2.add_to_tab(self.room2, self.drink1.drink_price)
+        self.room2.add_to_tab(self.room2, self.drink2.drink_price)
+        self.room2.add_to_tab(self.room2, self.drink3.drink_price)
+        self.assertEqual(14.40, self.room2.drinks_tab)
+
+
 
 
